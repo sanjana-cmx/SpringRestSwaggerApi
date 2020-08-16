@@ -1,15 +1,33 @@
 package com.spring.boot.rest.springrest.beans;
 
-public class Address {
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
+@Entity
+public class Address {
+    @Id
+    private int id;
     private String location;
     private String city;
     private int pincode;
 
-    public Address(String location, String city, int pincode) {
+    public  Address(){
+
+    }
+
+    public Address(int id, String location, String city, int pincode) {
+        this.id = id;
         this.location = location;
         this.city = city;
         this.pincode = pincode;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getLocation() {

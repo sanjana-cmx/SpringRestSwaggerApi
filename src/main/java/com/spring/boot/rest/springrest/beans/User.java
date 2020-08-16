@@ -1,9 +1,21 @@
 package com.spring.boot.rest.springrest.beans;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+
+@Entity
 public class User {
+    @Id
     private int id;
     private String firstName;
     private String lastName;
+    @ManyToOne  //Many Users to One Address
+    private Address address;
+
+    public User(){
+
+    }
 
     public Address getAddress() {
         return address;
@@ -13,7 +25,7 @@ public class User {
         this.address = address;
     }
 
-    private Address address;
+
 
     public User(int id, String firstName, String lastName, Address address) {
         this.id = id;

@@ -21,17 +21,25 @@ public class UserController {
     }
     @GetMapping("/user/{id}")
     public User getUser(@PathVariable int id){
-        return userService.getUser(id);
+        return userService.getUserById(id);
 
+    }
+    @GetMapping("user/address/{addressId}")
+    public List<User> getUsersByAddressId(@PathVariable int addressId) {
+      return userService.getUsersByAddressId(addressId);
     }
     @PostMapping("/addUser")
     public void addUser(@RequestBody User user){
        userService.addUser(user);
 
     }
-   /* @GetMapping("/add/{address}")
-    public User getUserByAddress(@PathVariable Address address){
-        return userService.getUserByAddress(address);
+  @DeleteMapping("/user/{id}")
+    public void deleteUser(@PathVariable int id){
+        userService.deleteUser(id);
+  }
+  @PutMapping("/user/{id}")
+    public void updateUser(@PathVariable int id,@RequestBody User user){
+        userService.updateUser(id,user);
+  }
 
-    }*/
 }
