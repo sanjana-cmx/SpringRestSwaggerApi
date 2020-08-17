@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -33,11 +34,11 @@ public class UserService {
         userRepository.findByAddressId(id).forEach(users::add);
         return users;
     }
-     public User getUserById(int id){
+     public Optional<User> getUserById(int id){
        /*// User user = users.get(id); Based on Array Index
          User user = users.stream().filter(t ->id==(t.getId())).findFirst().orElseThrow(null);
           return  user;*/
-         return  userRepository.findOne(id)    ;
+         return  userRepository.findById(id)    ;
     }
 
     public void addUser(User user){
@@ -46,10 +47,14 @@ public class UserService {
     }
 
     public void deleteUser(int id){
-        userRepository.delete(id);
+        userRepository.deleteById(id);
     }
 
     public void updateUser(int id,User user){
         userRepository.save(user);
+    }
+
+    public List<User> getUsersByFirstName(String firstname) {
+        return userRepository.findByFirstName(firstname);
     }
 }

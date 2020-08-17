@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PostService {
@@ -27,8 +28,8 @@ public class PostService {
         return  posts;
     }
 
-    public Post getPostById(int id){
-         return postRepository.findOne(id);
+    public Optional<Post> getPostById(int id){
+         return postRepository.findById(id);
     }
 
     public void addPost(Post post){
@@ -36,7 +37,7 @@ public class PostService {
     }
 
     public  void deletePost(int id){
-        postRepository.delete(id);
+        postRepository.deleteById(id);
     }
 
     public void updatePost(int id,Post post){

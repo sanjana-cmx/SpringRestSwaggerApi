@@ -7,12 +7,13 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class StudentService {
     //Autowire Repository into Service
     @Autowired
-    StudentRepository studentRepository;
+   private  StudentRepository studentRepository;
 
     public List<Student> getAllStudents(){
         List<Student> students = new ArrayList<>();
@@ -20,21 +21,32 @@ public class StudentService {
         return students;
     }
     public void addStudent(Student  student){
+
         studentRepository.save(student);
     }
-    public Student getStudentById(String id){
+
+    public Optional<Student> getStudentById(String id){
 
        // return studentRepository.findById(id);
-        return  studentRepository.findOne(id);
+        return  studentRepository.findStudentById(id);
     }
 
     public  void updateStudent(String id, Student student){
         studentRepository.save(student);
     }
 
-    public void deleteStudnet(String id){
+    public void deleteStudent(String id){
 
        // studentRepository.deleteById(id);
-        studentRepository.delete(getStudentById(id));
+        studentRepository.deleteById(id);
+    }
+
+    public Optional<String> getStudentNameById(String id) {
+        return studentRepository.getNameById(id);
+    }
+
+    public Optional<Student> findStudentByCriteria(String criteria){
+        return studentRepository.findByCriteria(criteria);
+
     }
 }

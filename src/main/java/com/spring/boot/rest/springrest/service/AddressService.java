@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AddressService {
@@ -29,14 +30,15 @@ public class AddressService {
          return addresses;
 
     }
-    public Address getAddressById(int id){
-     return addressRepository.findOne(id);
+    public Optional<Address> getAddressById(int id){
+     return addressRepository.findById(id);
     }
     public void addAddress(Address address){
         addressRepository.save(address);
     }
     public void deleteAddress(int id){
-        addressRepository.delete(id);
+
+        addressRepository.deleteById(id);
     }
 
     public void updateAddress(int id,Address address){

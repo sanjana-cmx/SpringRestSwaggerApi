@@ -5,8 +5,8 @@ import com.spring.boot.rest.springrest.service.AddressService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class AddressController {
@@ -18,7 +18,7 @@ public class AddressController {
     return addressService.getAllAddress();
     }
     @GetMapping("/address/{id}")
-    public Address getAddressById(@PathVariable int id){
+    public Optional<Address> getAddressById(@PathVariable int id){
         return addressService.getAddressById(id);
     }
     @PostMapping("/add")

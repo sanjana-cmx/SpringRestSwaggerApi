@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class StudentController {
@@ -18,10 +19,23 @@ public class StudentController {
         return studentService.getAllStudents();
     }
     @GetMapping("/students/{id}")
-    public Student getStudentById(@PathVariable String id){
+    public Optional<Student> getStudentById(@PathVariable String id){
 
         //return studentService.getStudentById(id);
         return  studentService.getStudentById(id);
+    }
+    @GetMapping("/students/name/{id}")
+    public Optional<String> getStNameById(@PathVariable String id){
+
+        //return studentService.getStudentById(id);
+        return  studentService.getStudentNameById(id);
+    }
+
+    @GetMapping("/students/criteria/{criteria}")
+    public Optional<Student> getStudentByCriteria(@PathVariable String criteria){
+
+        //return studentService.getStudentById(id);
+        return  studentService.findStudentByCriteria(criteria);
     }
     @PostMapping("/students")
     public void addStudent(@RequestBody Student student){
@@ -33,7 +47,7 @@ public class StudentController {
     }
     @DeleteMapping("/students/{id}")
     public void deleteStudent(@PathVariable String id){
-        studentService.deleteStudnet(id);
+        studentService.deleteStudent(id);
     }
 
 }

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class PostController {
@@ -21,7 +22,7 @@ public class PostController {
         return  postService.getPostByUserId(id);
     }
     @GetMapping("/post/{id}")
-    public Post getPostById(@PathVariable int id){
+    public Optional<Post> getPostById(@PathVariable int id){
         return postService.getPostById(id);
     }
     @PostMapping("/addPost")
